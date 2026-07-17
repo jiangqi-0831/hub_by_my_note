@@ -1,5 +1,4 @@
-![](题目/assets/未命名/file-20260716140447559.png)
-
+![](assets/Cost%20of%20a%20Bracket%20Sequence/file-20260717171436939.png)
 # 思路讲解
 ## 求出原序列的最长正规括号子序列
 $$
