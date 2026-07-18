@@ -1,7 +1,7 @@
 ![](assets/未命名/file-20260717162919406.png)
 
 # 代码
-## 解法一：构造
+## 构造
 ```
 #include<bits/stdc++.h>
 using namespace std;
@@ -62,5 +62,3 @@ int main(){
 	return 0;
 }
 ```
-
-## 解法二：dp
