@@ -52,7 +52,8 @@ int main(){
 ```
 
 # 思路
-首先补充几个位运算的知识：
+
+首先补充几个位运算的知识： ^fcc5df
 1. $a \oplus b = c \iff a = b \oplus c$
 2. $a \oplus b \leq a \| b$ 
 3. $0 \oplus 0 = 0$
