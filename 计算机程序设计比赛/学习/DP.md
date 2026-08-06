@@ -52,7 +52,13 @@ for(int i=1;i<=317;i++){
 ```
 但是这样可能导致越界，我们思考一下接受式
 ```
-
+vector<vector<int>> dp;  
+dp[0][0]=1;  
+for(int i=1;i<=317;i++){  
+    for(int j=i;j<=n;j++){  
+        dp[i][j]=dp[i][j-i]+dp[i-1][j-i];  
+    }  
+}
 ```
 
 
