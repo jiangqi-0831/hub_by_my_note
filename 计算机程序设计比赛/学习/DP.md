@@ -109,7 +109,33 @@ for (int i = 1; i <= n; i++)
 ```
 最后答案就是f\[w\]
 
-
+## 加零
+题目描述：对于下标 i 满足 $a_i=|a|+1-i$ ，可以在末尾加 $i-1$ 个零
+题解：有一个很明显的阶段，每次加完零后可以加的零会变化，因此先写一个dfs
+```
+long long dfs(long long n,long long len,vector<long long> a){
+	long long ans=len;
+	for(int i=1;i<n;i++){
+		if(a[i]+i+1==len+1){
+			ans=max(ans,dfs(n,len+i,a));
+		}
+	}
+	return ans;
+}
+ 
+void solve(){
+	int n;
+	cin>>n;
+	vector<long long> a(n);
+	for(long long &x:a){
+		cin>>x;
+	}
+	cout<<dfs(n,n,a)<<"\n";
+	
+}
+```
+代码没问题，但是在第五个数据点就超时了。
+思考优化：我们可以发现len在每一个阶段之后都只增不减。
 # 线性状态的动态规划
 ## 最长不减子序列问题LIS
 线性状态表示：$f_i$ 代表以 i 结尾的最长最长不减子序列的长度。
