@@ -136,6 +136,53 @@ void solve(){
 ```
 代码没问题，但是在第五个数据点就超时了。
 思考优化：我们可以发现len在每一个阶段之后都只增不减。
+那么我们就定义状态为当前长度。状态转移就是满足 a\[i\]+i 的 i ，方程如下：
+$$
+dp_{len}=\max\{len ,\max_{i\in dege[len]}{dp_{len}}\}
+$$
+
+其中 dege\[len\]是只长度为len时可以往后加入的零。
+然后我们在dfs里采用记忆式搜索。
+```
+vector<long long> a;
+int n;
+unordered_map<long long,vector<int>> edges;
+unordered_map<long long,long long> dp;
+
+long long dfs(long long len){
+	if(dp.find(len)!=dp.end()){
+		return dp[len];
+	}
+	dp[len]=len;
+	auto it=edges.find(len);
+	if(it != edges.end()){
+		for(int x:it->second){
+			dp[len]=max(dp[len],dfs(len+x));
+		}
+	}
+	return dp[len];
+}
+
+void solve(){
+	cin>>n;
+	a.resize(n);dp.clear();edges.clear();
+	dp.reserve(n);edges.reserve(n);
+	for(long long &x:a){
+		cin>>x;
+	}
+	for(int i=1;i<n;i++){
+		edges[a[i]+i].push_back(i);
+	}
+	cout<<dfs(n)<<"\n";
+}
+```
+
+### 代码优化方案：
+![](assets/DP/file-20260807154451215.png)
+我自己总结一下就是
+1. 在map中操作符【】会引入新键，会导致map中元素增多，因此会导致查找变慢。因此先查找是否存在，再访问。
+2. 往map中加入大量元素会导致rehash，因此在知道长度时可以先resever（重新定义长度），再加入元素。
+
 # 线性状态的动态规划
 ## 最长不减子序列问题LIS
 线性状态表示：$f_i$ 代表以 i 结尾的最长最长不减子序列的长度。
