@@ -1,3 +1,4 @@
+~~原稿[现代 C++ STL 基础知识系统整理 - 知乎](https://zhuanlan.zhihu.com/p/681276606)~~
 # C++ STL 标准模板库详解
 
 ## 序言
